@@ -6,7 +6,7 @@
 #    By: pcahier <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 15:00:01 by pcahier           #+#    #+#              #
-#    Updated: 2018/10/30 15:12:17 by pcahier          ###   ########.fr        #
+#    Updated: 2018/11/06 08:58:11 by pcahier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,11 +33,12 @@ SRC = ft_abs.c ft_atoi.c ft_bzero.c ft_caesarcrypt.c ft_charray.c ft_decnumlen.c
 	  ft_strrchr.c ft_strrev.c ft_strsplit.c ft_strspn.c ft_strstr.c ft_strsub.c	\
 	  ft_strtrim.c ft_strupcase.c ft_tolower.c ft_toupper.c ft_uitoa_print.c		\
 	  ft_uitoam_print.c ft_uns_bin.c ft_uns_dec.c ft_uns_hex.c ft_uns_hexmaj.c		\
-	  ft_uns_oct.c ft_max.c ft_putnchar.c ft_vfprintf.c ft_wrongconv.c
+	  ft_uns_oct.c ft_max.c ft_putnchar.c ft_vfprintf.c ft_wrongconv.c				\
+	  get_next_line.c
 
 OBJ = $(SRC:.c=.o)
 
-INC = libft.h ft_printf.h ft_printstru.h
+INC = libft.h ft_printf.h ft_printstru.h get_next_line.h
 
 CC = gcc
 
