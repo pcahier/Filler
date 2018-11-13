@@ -6,7 +6,7 @@
 /*   By: pcahier <pcahier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 11:04:10 by pcahier           #+#    #+#             */
-/*   Updated: 2018/11/07 19:03:29 by pcahier          ###   ########.fr       */
+/*   Updated: 2018/11/13 18:46:27 by pcahier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static void		free_map(struct s_filler *inf)
 {
-	while (inf->dim[0] >= 0)
+	while (inf->lin >= 0)
 	{
-		free(inf->coord[inf->dim[0]]);
-		inf->dim[0]--;
+		free(inf->coord[inf->lin]);
+		inf->lin--;
 	}
 	free(inf->coord);
 }
@@ -25,14 +25,14 @@ static void		free_map(struct s_filler *inf)
 static int		allocate_map(struct s_filler *inf)
 {
 	int		i;
-	
+
 	i = 0;
-	if(!(inf->coord = (int**)ft_memalloc(sizeof(int *) * (inf->dim[0] + 1))))
+	if (!(inf->coord = (int**)ft_memalloc(sizeof(int *) * (inf->lin + 1))))
 		return (0);
-	while (i < inf->dim[0])
+	while (i < inf->lin)
 	{
-		if(!(inf->coord[i] = (int*)ft_memalloc(sizeof(int) * 
-						(inf->dim[1] + 1 ))))
+		if (!(inf->coord[i] = (int*)malloc(sizeof(int) *
+						(inf->col + 1))))
 			return (0);
 		i++;
 	}
@@ -42,12 +42,12 @@ static int		allocate_map(struct s_filler *inf)
 static int		init_inf(char *line, struct s_filler *inf)
 {
 	get_next_line(0, &line);
-	inf->play = line[10] - '0';
+	inf->play = line[10];
 	inf->my_piece = (inf->play == 1 ? 'X' : 'O');
 	inf->op_piece = (inf->play == 1 ? 'O' : 'X');
 	get_next_line(0, &line);
-	inf->dim[0] = ft_atoi(line + 8);
-	inf->dim[1] = ft_atoi(line + 8 + ft_decnumlen(inf->dim[0]));
+	inf->lin = ft_atoi(line + 8);
+	inf->col = ft_atoi(line + 8 + ft_decnumlen(inf->lin));
 	if (!(allocate_map(inf)))
 		return (0);
 	return (1);
@@ -57,12 +57,13 @@ int				main(void)
 {
 	char				*line;
 	struct s_filler		inf;
-	
 
 	line = NULL;
 	if (!(init_inf(line, &inf)))
 		return (-1);
-	play_filler(line, &inf);
+	while (get_next_line(0, &line))
+		if (!(play_filler(line, &inf)))
+			return (-2);
 	free_map(&inf);
 	return (0);
-}	
+}

@@ -1,5 +1,4 @@
-seed = 8921
-./pcahier.filler: Segfault at 1
+seed = 1126
 ./resources/players/abanlin.filler won
 Score:
-1AGAINST11
+2AGAINST13
