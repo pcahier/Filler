@@ -6,7 +6,7 @@
 /*   By: pcahier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 11:34:44 by pcahier           #+#    #+#             */
-/*   Updated: 2018/10/30 11:08:17 by pcahier          ###   ########.fr       */
+/*   Updated: 2018/11/13 21:19:39 by pcahier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct	s_stru
 }				t_stru;
 
 int				ft_printf(const char *format, ...);
+int				ft_errprintf(const char *format, ...);
 int				ft_vfprintf(int fd, const char *format, va_list *ap);
 t_stru			*ft_genbasestru(t_stru *stru, size_t pre, size_t wid_min);
 t_stru			*ft_analyseformat(t_stru *stru, const char *format);

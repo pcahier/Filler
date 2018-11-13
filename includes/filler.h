@@ -6,7 +6,7 @@
 /*   By: pcahier <pcahier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 11:03:59 by pcahier           #+#    #+#             */
-/*   Updated: 2018/11/13 17:34:06 by pcahier          ###   ########.fr       */
+/*   Updated: 2018/11/13 21:07:23 by pcahier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ typedef struct	s_fil_piec
 	int		col;
 	int		lin;
 	char	**coord;
+	int		value;
+	int		temp_x;
+	int		temp_y;
 }				t_fil_piec;
-
 
 typedef struct	s_filler
 {
@@ -36,6 +38,7 @@ typedef struct	s_filler
 }				t_filler;
 
 int			play_filler(char *line, struct s_filler *inf);
-void		fil_heat(struct s_filler *inf, struct s_fil_piec *piec);
+void		fil_heat(struct s_filler *inf);
+void		put_piece(struct s_filler *inf, struct s_fil_piec *piec);
 
 #endif 

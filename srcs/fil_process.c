@@ -6,7 +6,7 @@
 /*   By: pcahier <pcahier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 18:02:42 by pcahier           #+#    #+#             */
-/*   Updated: 2018/11/13 18:46:17 by pcahier          ###   ########.fr       */
+/*   Updated: 2018/11/13 21:22:53 by pcahier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,18 @@ static void		take_piece(char *line, struct s_fil_piec *piec)
 	y = 0;
 	while (y < piec->lin)
 	{
-		ft_printf("\np_lin : %d y : %d\n", piec->lin, y);
+		ft_errprintf("\np_lin : %d y : %d\n", piec->lin, y);
 		get_next_line(0, &line);
 		while (x < piec->col)
 		{
 			piec->coord[y][x] = line[x];
-			ft_printf("%c", piec->coord[y][x]);
+			ft_errprintf("%c", piec->coord[y][x]);
 			x++;
 		}
 		x = 0;
 		y++;
 	}
-	ft_printf("\n");
+	ft_errprintf("\n");
 }
 
 static int		init_piece(char *line, struct s_fil_piec *piec)
@@ -53,7 +53,7 @@ static int		init_piece(char *line, struct s_fil_piec *piec)
 	get_next_line(0, &line);
 	piec->lin = ft_atoi(line + 6);
 	piec->col = ft_atoi(line + 6 + ft_decnumlen(piec->lin));
-	ft_printf("piece x = %d piece y = %d\n", piec->col, piec->lin);
+	ft_errprintf("piece x = %d piece y = %d\n", piec->col, piec->lin);
 	if (!(piec->coord = (char**)ft_memalloc(sizeof(char *) * (piec->lin + 1))))
 		return (0);
 	while (i < piec->lin)
@@ -81,11 +81,11 @@ static void		take_map(char *line, struct s_filler *inf)
 		swi = 1;
 	while (y < inf->lin)
 	{
-		ft_printf("\nlin : %d y : %d\n", inf->lin, y);
+		ft_errprintf("\nlin : %d y : %d\n", inf->lin, y);
 		get_next_line(0, &line);
 		while (x < inf->col)
 		{
-			ft_printf("%c", line[x + 4]);
+			ft_errprintf("%c", line[x + 4]);
 			if (line[x + 4] == inf->op_piece)
 				inf->coord[y][x] = -1;
 			else if (line[x + 4] == inf->my_piece)
@@ -97,18 +97,19 @@ static void		take_map(char *line, struct s_filler *inf)
 		x = 0;
 		y++;
 	}
-	ft_printf("\n");
+	ft_errprintf("\n");
 }
 
 int				play_filler(char *line, struct s_filler *inf)
 {
 	struct s_fil_piec	piec;
 
+	piec.value = -3;
 	take_map(line, inf);
 	if (!(init_piece(line, &piec)))
 		return (0);
-	fil_heat(inf, &piec);
+	fil_heat(inf);
+	put_piece(inf, &piec);
 	free_piece(&piec);
-	write(1, "1 2\n", 4);
 	return (1);
 }

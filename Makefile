@@ -6,7 +6,7 @@
 #    By: pcahier <pcahier@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 11:03:45 by pcahier           #+#    #+#              #
-#    Updated: 2018/11/13 17:18:07 by pcahier          ###   ########.fr        #
+#    Updated: 2018/11/13 20:20:21 by pcahier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ INC = -I ./includes/ -I ./$(LIBFT_PATH)/
 SRCS_NAME = filler.c		\
 			fil_process.c	\
 			filheat.c		\
+			fil_piece.c		\
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 OBJ = $(addprefix $(OBJ_PATH), $(SRCS_NAME:.c=.o))

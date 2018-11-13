@@ -6,7 +6,7 @@
 /*   By: pcahier <pcahier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 16:05:59 by pcahier           #+#    #+#             */
-/*   Updated: 2018/11/13 18:51:41 by pcahier          ###   ########.fr       */
+/*   Updated: 2018/11/13 21:23:31 by pcahier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,11 @@ static void	heat_it_up(struct s_filler *inf)
 	}
 }
 
-void		fil_heat(struct s_filler *inf, struct s_fil_piec *piec)
+void		fil_heat(struct s_filler *inf)
 {
 	int		x;
 	int		y;
 
-	if (!piec)
-		return ;
 	heat_it_up(inf);
 	x = 0;
 	y = 0;
@@ -67,10 +65,21 @@ void		fil_heat(struct s_filler *inf, struct s_fil_piec *piec)
 	{
 		while (x < inf->col)
 		{
-			ft_printf("%3d ", inf->coord[y][x]);
+			if (inf->coord[y][x] / 100)
+				ft_errprintf("{cyan}%3d{eoc} ", inf->coord[y][x]);
+			else if (inf->coord[y][x] / 75)
+				ft_errprintf("{green}%3d{eoc} ", inf->coord[y][x]);
+			else if (inf->coord[y][x] / 50)
+				ft_errprintf("{yellow}%3d{eoc} ", inf->coord[y][x]);
+			else if (inf->coord[y][x] / 25)
+				ft_errprintf("{magenta}%3d{eoc} ", inf->coord[y][x]);
+			else if (inf->coord[y][x] == -2)
+				ft_errprintf("{black}%3d{eoc} ", inf->coord[y][x]);
+			else
+				ft_errprintf("{red}%3d{eoc} ", inf->coord[y][x]);
 			x++;
 		}
-		ft_printf("\n");
+		ft_errprintf("\n");
 		x = 0;
 		y++;
 	}
