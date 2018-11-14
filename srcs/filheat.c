@@ -6,7 +6,7 @@
 /*   By: pcahier <pcahier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 16:05:59 by pcahier           #+#    #+#             */
-/*   Updated: 2018/11/13 21:23:31 by pcahier          ###   ########.fr       */
+/*   Updated: 2018/11/14 15:02:00 by pcahier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 static int	heat_around(struct s_filler *inf, int y, int x)
 {
-	if (x > 0 && inf->coord[y][x-1] == -3)
-		inf->coord[y][x-1] = inf->coord[y][x] + 1;
-	if (y > 0 && inf->coord[y-1][x] == -3)
-		inf->coord[y-1][x] = inf->coord[y][x] + 1;
-	if (x + 1 < inf->col && inf->coord[y][x+1] == -3)
-		inf->coord[y][x+1] = inf->coord[y][x] + 1;
-	if (y + 1 < inf->lin && inf->coord[y+1][x] == -3)
-		inf->coord[y+1][x] = inf->coord[y][x] + 1;
+	if (x > 0 && inf->coord[y][x - 1] == -3)
+		inf->coord[y][x - 1] = inf->coord[y][x] + 1;
+	if (y > 0 && inf->coord[y - 1][x] == -3)
+		inf->coord[y - 1][x] = inf->coord[y][x] + 1;
+	if (x + 1 < inf->col && inf->coord[y][x + 1] == -3)
+		inf->coord[y][x + 1] = inf->coord[y][x] + 1;
+	if (y + 1 < inf->lin && inf->coord[y + 1][x] == -3)
+		inf->coord[y + 1][x] = inf->coord[y][x] + 1;
 	return (0);
 }
 

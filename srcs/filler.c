@@ -6,7 +6,7 @@
 /*   By: pcahier <pcahier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 11:04:10 by pcahier           #+#    #+#             */
-/*   Updated: 2018/11/13 18:46:27 by pcahier          ###   ########.fr       */
+/*   Updated: 2018/11/14 16:59:41 by pcahier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,13 @@ static int		init_inf(char *line, struct s_filler *inf)
 {
 	get_next_line(0, &line);
 	inf->play = line[10];
-	inf->my_piece = (inf->play == 1 ? 'X' : 'O');
-	inf->op_piece = (inf->play == 1 ? 'O' : 'X');
+	inf->my_piece = (inf->play == '1' ? 'O' : 'X');
+	inf->op_piece = (inf->play == '1' ? 'X' : 'O');
+	free(line);
 	get_next_line(0, &line);
 	inf->lin = ft_atoi(line + 8);
 	inf->col = ft_atoi(line + 8 + ft_decnumlen(inf->lin));
+	free(line);
 	if (!(allocate_map(inf)))
 		return (0);
 	return (1);
@@ -62,8 +64,14 @@ int				main(void)
 	if (!(init_inf(line, &inf)))
 		return (-1);
 	while (get_next_line(0, &line))
+	{
+		free(line);
 		if (!(play_filler(line, &inf)))
+		{
+			free_map(&inf);
 			return (-2);
+		}
+	}
 	free_map(&inf);
 	return (0);
 }

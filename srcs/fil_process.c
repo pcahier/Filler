@@ -6,7 +6,7 @@
 /*   By: pcahier <pcahier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 18:02:42 by pcahier           #+#    #+#             */
-/*   Updated: 2018/11/13 21:22:53 by pcahier          ###   ########.fr       */
+/*   Updated: 2018/11/14 18:39:30 by pcahier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,16 @@ static void		take_piece(char *line, struct s_fil_piec *piec)
 	y = 0;
 	while (y < piec->lin)
 	{
-		ft_errprintf("\np_lin : %d y : %d\n", piec->lin, y);
 		get_next_line(0, &line);
 		while (x < piec->col)
 		{
 			piec->coord[y][x] = line[x];
-			ft_errprintf("%c", piec->coord[y][x]);
 			x++;
 		}
 		x = 0;
 		y++;
+		free(line);
 	}
-	ft_errprintf("\n");
 }
 
 static int		init_piece(char *line, struct s_fil_piec *piec)
@@ -53,7 +51,7 @@ static int		init_piece(char *line, struct s_fil_piec *piec)
 	get_next_line(0, &line);
 	piec->lin = ft_atoi(line + 6);
 	piec->col = ft_atoi(line + 6 + ft_decnumlen(piec->lin));
-	ft_errprintf("piece x = %d piece y = %d\n", piec->col, piec->lin);
+	free(line);
 	if (!(piec->coord = (char**)ft_memalloc(sizeof(char *) * (piec->lin + 1))))
 		return (0);
 	while (i < piec->lin)
@@ -73,31 +71,27 @@ static void		take_map(char *line, struct s_filler *inf)
 	int			y;
 	static int	swi = 0;
 
-	x = 0;
-	y = 0;
+	x = -1;
+	y = -1;
 	if (swi)
-		get_next_line(0, &line);
+		skip_next_line(0, line);
 	else
 		swi = 1;
-	while (y < inf->lin)
+	while (++y < inf->lin)
 	{
-		ft_errprintf("\nlin : %d y : %d\n", inf->lin, y);
 		get_next_line(0, &line);
-		while (x < inf->col)
+		while (++x < inf->col)
 		{
-			ft_errprintf("%c", line[x + 4]);
 			if (line[x + 4] == inf->op_piece)
 				inf->coord[y][x] = -1;
 			else if (line[x + 4] == inf->my_piece)
 				inf->coord[y][x] = -2;
 			else
 				inf->coord[y][x] = -3;
-			x++;
 		}
-		x = 0;
-		y++;
+		x = -1;
+		free(line);
 	}
-	ft_errprintf("\n");
 }
 
 int				play_filler(char *line, struct s_filler *inf)

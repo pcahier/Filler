@@ -6,7 +6,7 @@
 /*   By: pcahier <pcahier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 20:20:01 by pcahier           #+#    #+#             */
-/*   Updated: 2018/11/13 21:43:04 by pcahier          ###   ########.fr       */
+/*   Updated: 2018/11/14 17:07:00 by pcahier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void		is_spot_cold(struct s_filler *inf, struct s_fil_piec *piec,
 		while (ix < piec->col)
 		{
 			if (piec->coord[why][ix] == '*')
-				sum += inf->coord[why+y][ix+x];
+				sum += inf->coord[why + y][ix + x];
 			ix++;
 		}
 		ix = 0;
@@ -48,26 +48,26 @@ static void		is_spot_legal(struct s_filler *inf, struct s_fil_piec *piec,
 	int		ix;
 	int		why;
 
-	ix = 0;
 	why = 0;
 	swi = 0;
 	while (why < piec->lin)
 	{
+		ix = 0;
 		while (ix < piec->col)
 		{
-			if (piec->coord[why][ix] == '*' && (inf->coord[why+y][ix+x] == -1
-						|| (swi && inf->coord[why+y][ix+x] == -2)))
+			if (piec->coord[why][ix] == '*' &&
+					(inf->coord[why + y][ix + x] == -1
+						|| (swi && inf->coord[why + y][ix + x] == -2)))
 				return ;
-			if (piec->coord[why][ix] == '*' && inf->coord[why+y][ix+x] == -2)
+			if (piec->coord[why][ix] == '*' &&
+					inf->coord[why + y][ix + x] == -2)
 				swi = 1;
 			ix++;
 		}
-		ix = 0;
 		why++;
 	}
 	if (!swi)
 		return ;
-	ft_errprintf("positive placement \n");
 	is_spot_cold(inf, piec, x, y);
 }
 
@@ -78,14 +78,13 @@ void			put_piece(struct s_filler *inf, struct s_fil_piec *piec)
 
 	x = 0;
 	y = 0;
-	while (piec->lin + y < inf->lin)
+	while (piec->lin + y <= inf->lin)
 	{
-		while (piec->col + x < inf->col)
+		while (piec->col + x <= inf->col)
 		{
 			is_spot_legal(inf, piec, x, y);
 			x++;
 		}
-		ft_errprintf("une ligne de faite\n");
 		x = 0;
 		y++;
 	}
