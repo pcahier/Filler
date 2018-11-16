@@ -6,7 +6,7 @@
 /*   By: pcahier <pcahier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 16:05:59 by pcahier           #+#    #+#             */
-/*   Updated: 2018/11/14 15:02:00 by pcahier          ###   ########.fr       */
+/*   Updated: 2018/11/16 15:57:32 by pcahier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ void		fil_heat(struct s_filler *inf)
 				ft_errprintf("{magenta}%3d{eoc} ", inf->coord[y][x]);
 			else if (inf->coord[y][x] == -2)
 				ft_errprintf("{black}%3d{eoc} ", inf->coord[y][x]);
+			else if(inf->coord[y][x] == -3)
+				ft_errprintf("%s", "LIB");
 			else
 				ft_errprintf("{red}%3d{eoc} ", inf->coord[y][x]);
 			x++;
