@@ -6,7 +6,7 @@
 /*   By: pcahier <pcahier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 16:05:59 by pcahier           #+#    #+#             */
-/*   Updated: 2018/11/19 16:43:12 by pcahier          ###   ########.fr       */
+/*   Updated: 2018/11/19 18:17:42 by pcahier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +65,20 @@ void		fil_heat(struct s_filler *inf)
 	{
 		while (x < inf->col)
 		{
-			if(inf->coord[y][x] == INTMAX)
-				ft_errprintf("%s", "LIB");
+			if (inf->coord[y][x] == INTMAX)
+				ft_errprintf("LIB");
+			else if (inf->coord[y][x] == -INTMAX)
+				ft_errprintf("{black}ME!{eoc}");
 			else if (inf->coord[y][x] / 100)
-				ft_errprintf("{cyan}%3d{eoc} ", inf->coord[y][x]);
+				ft_errprintf("{cyan}%3d{eoc}", inf->coord[y][x]);
 			else if (inf->coord[y][x] / 75)
-				ft_errprintf("{green}%3d{eoc} ", inf->coord[y][x]);
+				ft_errprintf("{green}%3d{eoc}", inf->coord[y][x]);
 			else if (inf->coord[y][x] / 50)
-				ft_errprintf("{yellow}%3d{eoc} ", inf->coord[y][x]);
+				ft_errprintf("{yellow}%3d{eoc}", inf->coord[y][x]);
 			else if (inf->coord[y][x] > -1)
-				ft_errprintf("{magenta}%3d{eoc} ", inf->coord[y][x]);
-			else if (inf->coord[y][x] == -2)
-				ft_errprintf("{black}%3d{eoc} ", inf->coord[y][x]);
+				ft_errprintf("{magenta}%3d{eoc}", inf->coord[y][x]);
 			else
-				ft_errprintf("{red}%3d{eoc} ", inf->coord[y][x]);
+				ft_errprintf("{red}%3d{eoc}", inf->coord[y][x]);
 			x++;
 		}
 		ft_errprintf("\n");

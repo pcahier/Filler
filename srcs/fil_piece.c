@@ -6,7 +6,7 @@
 /*   By: pcahier <pcahier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 20:20:01 by pcahier           #+#    #+#             */
-/*   Updated: 2018/11/14 17:07:00 by pcahier          ###   ########.fr       */
+/*   Updated: 2018/11/19 18:15:07 by pcahier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ static void		is_spot_legal(struct s_filler *inf, struct s_fil_piec *piec,
 		{
 			if (piec->coord[why][ix] == '*' &&
 					(inf->coord[why + y][ix + x] == -1
-						|| (swi && inf->coord[why + y][ix + x] == -2)))
+						|| (swi && inf->coord[why + y][ix + x] == -INTMAX)))
 				return ;
 			if (piec->coord[why][ix] == '*' &&
-					inf->coord[why + y][ix + x] == -2)
+					inf->coord[why + y][ix + x] == -INTMAX)
 				swi = 1;
 			ix++;
 		}
