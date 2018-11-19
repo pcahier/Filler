@@ -6,7 +6,7 @@
 /*   By: pcahier <pcahier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 18:02:42 by pcahier           #+#    #+#             */
-/*   Updated: 2018/11/14 18:39:30 by pcahier          ###   ########.fr       */
+/*   Updated: 2018/11/19 16:08:12 by pcahier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static void		take_map(char *line, struct s_filler *inf)
 			else if (line[x + 4] == inf->my_piece)
 				inf->coord[y][x] = -2;
 			else
-				inf->coord[y][x] = -3;
+				inf->coord[y][x] = INTMAX;
 		}
 		x = -1;
 		free(line);

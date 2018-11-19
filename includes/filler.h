@@ -6,7 +6,7 @@
 /*   By: pcahier <pcahier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 11:03:59 by pcahier           #+#    #+#             */
-/*   Updated: 2018/11/14 15:03:02 by pcahier          ###   ########.fr       */
+/*   Updated: 2018/11/19 16:06:40 by pcahier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "libft.h"
 # include "get_next_line.h"
 # include "ft_printf.h"
+
+#define INTMAX 2147483647
 
 typedef struct	s_fil_piec
 {
