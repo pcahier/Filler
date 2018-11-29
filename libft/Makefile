@@ -6,7 +6,7 @@
 #    By: pcahier <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 15:00:01 by pcahier           #+#    #+#              #
-#    Updated: 2018/11/29 17:41:34 by pcahier          ###   ########.fr        #
+#    Updated: 2018/11/29 17:50:47 by pcahier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,9 +59,13 @@ fclean: clean
 	@rm -f $(NAME)
 	@echo "\033[31mLibrary \033[1;31m$(NAME)\033[1;0m\033[31m removed.\033[0m"
 
+mfclean:
+	@rm -f $(NAME)
+	@echo "\033[31mLibrary \033[1;31m$(NAME)\033[1;0m\033[31m removed.\033[0m"
+
 
 re:
 	@make fclean
 	@make re
 
-.PHONY: all, clean, fclean, re
+.PHONY: all, clean, fclean, mfclean, re

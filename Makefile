@@ -6,7 +6,7 @@
 #    By: pcahier <pcahier@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 11:03:45 by pcahier           #+#    #+#              #
-#    Updated: 2018/11/29 17:42:00 by pcahier          ###   ########.fr        #
+#    Updated: 2018/11/29 17:50:57 by pcahier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ clean:
 	@echo "\033[31mObjects files directory for \033[1;31m$(NAME)\033[1;0m\033[31m removed.\033[0m"
 
 fclean: clean
-	@make -C $(LIBFT_PATH)/ fclean
+	@make -C $(LIBFT_PATH)/ mfclean
 	@/bin/rm -rf $(NAME)
 	@echo "\033[31mBin \033[1;31m$(NAME)\033[1;0m\033[31m removed.\033[0m"
 
