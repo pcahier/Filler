@@ -6,11 +6,15 @@
 #    By: pcahier <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 15:00:01 by pcahier           #+#    #+#              #
-#    Updated: 2018/11/14 18:37:17 by pcahier          ###   ########.fr        #
+#    Updated: 2018/11/29 17:41:34 by pcahier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
+
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+INC = libft.h ft_printf.h ft_printstru.h get_next_line.h
 
 SRC = ft_abs.c ft_atoi.c ft_bzero.c ft_caesarcrypt.c ft_charray.c ft_decnumlen.c	\
 	  ft_div.c ft_genprinstruc.c ft_initstru.c ft_int_dec.c ft_int_uchar.c			\
@@ -38,27 +42,26 @@ SRC = ft_abs.c ft_atoi.c ft_bzero.c ft_caesarcrypt.c ft_charray.c ft_decnumlen.c
 
 OBJ = $(SRC:.c=.o)
 
-INC = libft.h ft_printf.h ft_printstru.h get_next_line.h
-
-CC = gcc
-
-CFLAGS = -Wall -Wextra -Werror
-
 all: $(NAME)
 
 $(NAME):
-	$(CC) $(CFLAGS) -c $(SRC)
-	ar rc $(NAME) $(OBJ) $(INC)
-	ranlib $(NAME)
+	@$(CC) $(CFLAGS) -c $(SRC)
+	@ar rc $(NAME) $(OBJ) $(INC)
+	@ranlib $(NAME)
+	@echo "\033[34m\033[1mCompilation of \033[0m\033[36m$(NAME)\033[1m\033[34m done.\033[0m"
 
 clean:
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
+	@echo "\033[31mObjects files of \033[1;31mLibft\033[1;0m\033[31m removed.\033[0m"
+
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "\033[31mLibrary \033[1;31m$(NAME)\033[1;0m\033[31m removed.\033[0m"
+
 
 re:
-	make fclean 
-	make all
+	@make fclean
+	@make re
 
-.PHONY: all clean fclean re
+.PHONY: all, clean, fclean, re

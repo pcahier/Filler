@@ -6,7 +6,7 @@
 #    By: pcahier <pcahier@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 11:03:45 by pcahier           #+#    #+#              #
-#    Updated: 2018/11/13 20:20:21 by pcahier          ###   ########.fr        #
+#    Updated: 2018/11/29 17:42:00 by pcahier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,13 +42,15 @@ $(OBJ_PATH)%.o: $(SRCS_PATH)%.c
 clean:
 	@make -C $(LIBFT_PATH)/ clean
 	@/bin/rm -rf $(OBJ_PATH)
-	@echo "\033[31mObjects files \033[1;31m$(OBJS_LIST)\033[1;0m\033[31m removed.\033[0m"
+	@echo "\033[31mObjects files directory for \033[1;31m$(NAME)\033[1;0m\033[31m removed.\033[0m"
 
 fclean: clean
 	@make -C $(LIBFT_PATH)/ fclean
 	@/bin/rm -rf $(NAME)
 	@echo "\033[31mBin \033[1;31m$(NAME)\033[1;0m\033[31m removed.\033[0m"
 
-re: fclean all
+re: 
+	@make fclean
+	@make all
 
 .PHONY: all, clean, fclean, re
